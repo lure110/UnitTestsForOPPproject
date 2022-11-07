@@ -5,16 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using csgame_backend.Data.Entities;
+using csgame_backend.Patterns;
+using csgame_backend.player_websocket;
+using Moq;
+using NUnit.Framework;
+using WebSocketSharp;
+using Xunit;
+using Assert = Xunit.Assert;
 
 namespace csgame_backend.player_websocket.Tests
 {
-    [TestClass()]
+   
     public class TeamTests
     {
-        [TestMethod()]
+        [Fact]
         public void TeamTest()
         {
-            Assert.Fail();
+            Team team = new Team();
+            bool created = team == null;
+
+            Assert.False(created);
         }
     }
 }

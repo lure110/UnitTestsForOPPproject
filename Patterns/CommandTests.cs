@@ -1,32 +1,45 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using csgame_backend.csgame_backend.Patterns;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using csgame_backend.player_websocket;
+using Xunit;
+using Assert = Xunit.Assert;
 
 namespace csgame_backend.csgame_backend.Patterns.Tests
 {
-    [TestClass()]
     public class CommandTests
     {
-        [TestMethod()]
+       [Fact]
         public void CommandTest()
         {
-            Assert.Fail();
+            //Assert.Fail();
         }
 
-        [TestMethod()]
+        [Fact]
         public void ExecuteTest()
         {
-            Assert.Fail();
+            Player player1 = new Player("Unit_Test_Player1", 0, 0);
+            Player player2 = new Player("Unit_Test_Player2", 0, 0);
+
+            Shoot shoot = new Shoot();
+            shoot.ExecuteCommand(10f,player2);
+            player1.Health -= 10f;
+
+            bool same = player1.Health == player2.Health;
+
+            Assert.True(same, "Player1 health: " + player1.Health + "should be same as Player2 health: "+player2.Health);
         }
 
-        [TestMethod()]
+        [Fact]
         public void UnExecuteTest()
         {
-            Assert.Fail();
+            Player player1 = new Player("Unit_Test_Player1", 0, 0);
+            Player player2 = new Player("Unit_Test_Player2", 0, 0);
+
+            Shoot shoot = new Shoot();
+            shoot.ExecuteCommand(10f, player2);
+            shoot.UnExecuteCommand(player2);
+
+            bool same = player1.Health == player2.Health;
+
+            Assert.True(same, "Player1 health: " + player1.Health + "should be same as Player2 health: " + player2.Health);
         }
     }
 }
